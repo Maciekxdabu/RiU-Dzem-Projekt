@@ -6,7 +6,17 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(PlayerInput), typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
+    public enum Tool
+    {
+        none = 0,
+        hoe = 1,
+        watercan = 2,
+        seed = 3,
+    }
+
     [SerializeField] private float moveSpeed = 1;
+
+    private Tool currentTool = Tool.hoe;
 
     private Rigidbody2D rb2d;
 
@@ -25,6 +35,11 @@ public class PlayerController : MonoBehaviour
         rb2d.velocity = moveDirection * moveSpeed;
     }
 
+    private void OnGUI()
+    {
+        GUILayout.Label("Current tool: " + currentTool.ToString());
+    }
+
     // ---------- Input methods
 
     public void OnMove(InputAction.CallbackContext ctx)
@@ -39,11 +54,34 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void OnTill(InputAction.CallbackContext ctx)
+    public void OnToolUsage(InputAction.CallbackContext ctx)
     {
         if (ctx.started)
         {
-            FarmController.Instance.TillSoil(transform.position);
+            switch (currentTool)
+            {
+                case Tool.hoe://tilling
+                    FarmController.Instance.TillSoil(transform.position);
+                    break;
+                case Tool.watercan://watering
+
+                    break;
+                case Tool.seed://sowing
+
+                    break;
+                case Tool.none:
+                default:
+                    Debug.Log("No tool or unimplemented tool");
+                    break;
+            }
+        }
+    }
+
+    public void OnChangeTool(InputAction.CallbackContext ctx)
+    {
+        if (ctx.started)
+        {
+            currentTool = (Tool)ctx.ReadValue<float>();
         }
     }
 }
