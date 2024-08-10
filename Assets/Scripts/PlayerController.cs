@@ -38,4 +38,12 @@ public class PlayerController : MonoBehaviour
             moveDirection = Vector2.zero;
         }
     }
+
+    public void OnTill(InputAction.CallbackContext ctx)
+    {
+        if (ctx.started)
+        {
+            FarmController.Instance.TillSoil(transform.position);
+        }
+    }
 }
