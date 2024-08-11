@@ -14,11 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   plantName: Lebiodka
   plantPrefab: {fileID: 1702694394677967123, guid: a44decee01897764db9a8207c7172254, type: 3}
-  growthTime: 5
   sowableTiles:
   - {fileID: 11400000, guid: daefdb0044ad1b94d96843548073a0d7, type: 2}
   - {fileID: 11400000, guid: 1bd98ebe3e33c2049ad5bf91831dc7f6, type: 2}
   growthStagesSprites:
-  - {fileID: 21300000, guid: 771ce5200b663184d9ab28acfaa98d8f, type: 3}
-  - {fileID: 21300000, guid: 90bff03285bfa974eb5aab68ac72b853, type: 3}
-  - {fileID: 21300000, guid: e602420743824484b8464a75c9a50fa9, type: 3}
+  - {fileID: 21300000, guid: bbbd597ae890a084fb7ad534307d80fc, type: 3}
+  - {fileID: 21300000, guid: 1ada479704094a345ae4884a35ea0cf2, type: 3}
+  - {fileID: 21300000, guid: a5633ac077566d6479e694f33c256db9, type: 3}
+  - {fileID: 21300000, guid: 976915727ece3df4abcc857fe4316602, type: 3}
+  - {fileID: 21300000, guid: df204d0ce728b4c47878069f0a6ce173, type: 3}
+  - {fileID: 21300000, guid: 6e09e2ecdbbde9943a422246981865bd, type: 3}
+  - {fileID: 21300000, guid: e2b61679be123f24f941d7972f282c6a, type: 3}
+  - {fileID: 21300000, guid: 35c39ba8f111eaa40a9c9a8522057358, type: 3}
+  - {fileID: 21300000, guid: cbb3e31a43885ae419fcda3acbd6d583, type: 3}
+  growthTime: 5
+  amountGatheredRange: {x: 1, y: 1}
