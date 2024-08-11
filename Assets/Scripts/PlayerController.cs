@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     }
 
     [SerializeField] private float moveSpeed = 1;
+    [SerializeField] private PlantSO plantToSow = null;
 
     private Tool currentTool = Tool.hoe;
 
@@ -67,7 +68,7 @@ public class PlayerController : MonoBehaviour
 
                     break;
                 case Tool.seed://sowing
-
+                    FarmController.Instance.SowSoil(transform.position, plantToSow);
                     break;
                 case Tool.none:
                 default:

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de53a967a50ed6844ace04bd613e2768, type: 3}
+  m_Name: Lebiodka
+  m_EditorClassIdentifier: 
+  plantName: Lebiodka
+  plantPrefab: {fileID: 1702694394677967123, guid: a44decee01897764db9a8207c7172254, type: 3}
+  growthTime: 5
+  sowableTiles:
+  - {fileID: 11400000, guid: daefdb0044ad1b94d96843548073a0d7, type: 2}
+  - {fileID: 11400000, guid: 1bd98ebe3e33c2049ad5bf91831dc7f6, type: 2}
+  growthStagesSprites:
+  - {fileID: 21300000, guid: 771ce5200b663184d9ab28acfaa98d8f, type: 3}
+  - {fileID: 21300000, guid: 90bff03285bfa974eb5aab68ac72b853, type: 3}
+  - {fileID: 21300000, guid: e602420743824484b8464a75c9a50fa9, type: 3}

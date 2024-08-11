@@ -170,7 +170,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 277a9a54f7ef2804a8f782ea795ac990, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
+  moveSpeed: 5
+  plantToSow: {fileID: 11400000, guid: e79624cc30964cf4bba72d4b74a15d69, type: 2}
 --- !u!114 &342000991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2158,7 +2159,7 @@ GameObject:
   - component: {fileID: 1548316050}
   - component: {fileID: 1548316049}
   m_Layer: 0
-  m_Name: Map (Grid)
+  m_Name: Farm Map (Grid)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2202,10 +2203,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilemap: {fileID: 1174808663}
   tilling:
-  - A: {fileID: 11400000, guid: 3a84f2d2e45e67b4a84ce7447ded9571, type: 2}
-    B: {fileID: 11400000, guid: daefdb0044ad1b94d96843548073a0d7, type: 2}
-  - A: {fileID: 11400000, guid: daefdb0044ad1b94d96843548073a0d7, type: 2}
-    B: {fileID: 11400000, guid: 3a84f2d2e45e67b4a84ce7447ded9571, type: 2}
+  - from: {fileID: 11400000, guid: 3a84f2d2e45e67b4a84ce7447ded9571, type: 2}
+    to: {fileID: 11400000, guid: daefdb0044ad1b94d96843548073a0d7, type: 2}
+  - from: {fileID: 11400000, guid: daefdb0044ad1b94d96843548073a0d7, type: 2}
+    to: {fileID: 11400000, guid: 3a84f2d2e45e67b4a84ce7447ded9571, type: 2}
+  plantPrefab: {fileID: 0}
 --- !u!156049354 &1548316051
 Grid:
   m_ObjectHideFlags: 0
@@ -2306,7 +2308,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
