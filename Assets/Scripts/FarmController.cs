@@ -16,7 +16,7 @@ public class FarmController : MonoBehaviour
     [SerializeField] private Tilemap tilemap;
     [Header("Tiles transformations")]
     [SerializeField] private TileTransform[] tilling;
-    [SerializeField] private GameObject plantPrefab;
+    [SerializeField] private TileTransform[] watering;
 
     //references
     private Grid grid;
@@ -58,6 +58,23 @@ public class FarmController : MonoBehaviour
         }
     }
 
+    public void WaterSoil(Vector2 worldPos)
+    {
+        //get Tile data from world position
+        Vector3Int gridPos = grid.WorldToCell(worldPos);
+        TileBase checkedTile = tilemap.GetTile(gridPos);
+
+        //check if there is a valid transformation for the (hoe) tool
+        foreach (TileTransform t in watering)
+        {
+            if (checkedTile == t.from && IsTileFree(gridPos))
+            {
+                tilemap.SetTile(gridPos, t.to);
+                return;
+            }
+        }
+    }
+
     public void SowSoil(Vector2 worldPos, PlantSO plantData)
     {
         //get Tile data from world position
@@ -69,6 +86,23 @@ public class FarmController : MonoBehaviour
         {
             PlantController plant =  Placeable.SpawnPlaceable(plantData.plantPrefab, gridInfo, gridPos).GetComponent<PlantController>();
             plant.Init(plantData);
+        }
+    }
+
+    public void Interact(Vector2 worldPos)
+    {
+        //get Tile data from world position
+        Vector3Int gridPos = grid.WorldToCell(worldPos);
+        TileBase checkedTile = tilemap.GetTile(gridPos);
+
+        Placeable obj = gridInfo.GetPositionProperty(gridPos, OCCUPANT_NAME, (Object)null) as Placeable;
+        if (obj != null)
+        {
+            if (obj.type == Placeable.Type.plant)
+            {
+                (int amount, PlantSO plant) = (obj as PlantController).GatherPlant();
+                HUD.Instance.AddScore(amount);
+            }
         }
     }
 

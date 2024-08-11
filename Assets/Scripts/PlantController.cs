@@ -43,6 +43,17 @@ public class PlantController : Placeable
         grown = false;
     }
 
+    public (int, PlantSO) GatherPlant()
+    {
+        if (grown)
+        {
+            Invoke(nameof(Remove), 0f);
+            return (plantData.Gather(), plantData);
+        }
+        else
+            return (0, null);
+    }
+
     // ---------- private methods
 
     private void UpdateVisuals()

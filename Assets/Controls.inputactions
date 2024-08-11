@@ -24,6 +24,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "6f6d770d-0127-497f-b0c3-8d0a05dad218",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "ChooseTool",
                     "type": "Value",
                     "id": "48ccf0d3-b978-4ff6-9e1e-32ab2e52bb3f",
@@ -92,7 +101,7 @@
                 {
                     "name": "",
                     "id": "23036e8a-2308-4812-8b78-9b179aa52d78",
-                    "path": "<Keyboard>/e",
+                    "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard+Mouse",
@@ -130,6 +139,17 @@
                     "processors": "Scale(factor=3)",
                     "groups": "Keyboard+Mouse",
                     "action": "ChooseTool",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "80b1836c-5e32-4e36-85df-6ad7edfb1193",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard+Mouse",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

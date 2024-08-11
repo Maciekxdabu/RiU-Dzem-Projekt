@@ -46,6 +46,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""6f6d770d-0127-497f-b0c3-8d0a05dad218"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""ChooseTool"",
                     ""type"": ""Value"",
                     ""id"": ""48ccf0d3-b978-4ff6-9e1e-32ab2e52bb3f"",
@@ -114,7 +123,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""23036e8a-2308-4812-8b78-9b179aa52d78"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard+Mouse"",
@@ -154,6 +163,17 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""ChooseTool"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""80b1836c-5e32-4e36-85df-6ad7edfb1193"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard+Mouse"",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -181,6 +201,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_UseTool = m_Player.FindAction("UseTool", throwIfNotFound: true);
+        m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_ChooseTool = m_Player.FindAction("ChooseTool", throwIfNotFound: true);
     }
 
@@ -245,6 +266,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_UseTool;
+    private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_ChooseTool;
     public struct PlayerActions
     {
@@ -252,6 +274,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public PlayerActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @UseTool => m_Wrapper.m_Player_UseTool;
+        public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputAction @ChooseTool => m_Wrapper.m_Player_ChooseTool;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
@@ -268,6 +291,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @UseTool.started += instance.OnUseTool;
             @UseTool.performed += instance.OnUseTool;
             @UseTool.canceled += instance.OnUseTool;
+            @Interact.started += instance.OnInteract;
+            @Interact.performed += instance.OnInteract;
+            @Interact.canceled += instance.OnInteract;
             @ChooseTool.started += instance.OnChooseTool;
             @ChooseTool.performed += instance.OnChooseTool;
             @ChooseTool.canceled += instance.OnChooseTool;
@@ -281,6 +307,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @UseTool.started -= instance.OnUseTool;
             @UseTool.performed -= instance.OnUseTool;
             @UseTool.canceled -= instance.OnUseTool;
+            @Interact.started -= instance.OnInteract;
+            @Interact.performed -= instance.OnInteract;
+            @Interact.canceled -= instance.OnInteract;
             @ChooseTool.started -= instance.OnChooseTool;
             @ChooseTool.performed -= instance.OnChooseTool;
             @ChooseTool.canceled -= instance.OnChooseTool;
@@ -314,6 +343,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnUseTool(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
         void OnChooseTool(InputAction.CallbackContext context);
     }
 }

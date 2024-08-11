@@ -13,7 +13,17 @@ public class PlantSO : ScriptableObject
 
     //growing and planting values
     [Header("Planting and Growing")]
-    public float growthTime = 5f;
     public List<TileBase> sowableTiles = new List<TileBase>();
     public Sprite[] growthStagesSprites = { };//first must be seeds
+
+    [Header("Economy")]
+    public float growthTime = 5f;
+    public Vector2Int amountGatheredRange = Vector2Int.one;
+
+    // ---------- public methods
+
+    public int Gather()
+    {
+        return Random.Range(amountGatheredRange.y, amountGatheredRange.y + 1);
+    }
 }

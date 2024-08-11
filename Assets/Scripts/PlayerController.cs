@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
                     FarmController.Instance.TillSoil(transform.position);
                     break;
                 case Tool.watercan://watering
-
+                    FarmController.Instance.WaterSoil(transform.position);
                     break;
                 case Tool.seed://sowing
                     FarmController.Instance.SowSoil(transform.position, plantToSow);
@@ -75,6 +75,14 @@ public class PlayerController : MonoBehaviour
                     Debug.Log("No tool or unimplemented tool");
                     break;
             }
+        }
+    }
+
+    public void OnInteract(InputAction.CallbackContext ctx)
+    {
+        if (ctx.started)
+        {
+            FarmController.Instance.Interact(transform.position);
         }
     }
 
