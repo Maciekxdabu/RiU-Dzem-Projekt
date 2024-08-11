@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private float moveSpeed = 1;
     [SerializeField] private PlantSO plantToSow = null;
+    [Header("References")]
+    [SerializeField] private Animator animator;
 
     private Tool currentTool = Tool.hoe;
 
@@ -53,6 +55,8 @@ public class PlayerController : MonoBehaviour
         {
             moveDirection = Vector2.zero;
         }
+
+        UpdateAnimation();
     }
 
     public void OnToolUsage(InputAction.CallbackContext ctx)
@@ -91,6 +95,22 @@ public class PlayerController : MonoBehaviour
         if (ctx.started)
         {
             currentTool = (Tool)ctx.ReadValue<float>();
+        }
+    }
+
+    // ---------- private methods
+
+    private void UpdateAnimation()
+    {
+        if (moveDirection == Vector2.zero)
+        {
+            animator.SetFloat("Speed", 0f);
+        }
+        else
+        {
+            animator.SetFloat("Speed", 1f);
+            animator.SetFloat("Horizontal", moveDirection.x);
+            animator.SetFloat("Vertical", moveDirection.y);
         }
     }
 }
