@@ -16,6 +16,7 @@ public abstract class Placeable : MonoBehaviour
     [SerializeField] private Vector2Int size = Vector2Int.one;//we look at left-down corner as the start position (x,y)
 
     protected GridInformation gridInfo;
+    protected Vector3Int leftDowntile;
     protected Vector3Int[] tilesTaken;
 
     // ---------- public static method
@@ -47,6 +48,7 @@ public abstract class Placeable : MonoBehaviour
             obj.gridInfo = _gridInfo;
 
             //register cells
+            obj.leftDowntile = cells[0];
             obj.tilesTaken = cells.ToArray();
             foreach (Vector3Int cell in obj.tilesTaken)
             {

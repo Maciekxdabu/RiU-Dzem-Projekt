@@ -39,7 +39,7 @@ public class FarmController : MonoBehaviour
         gridInfo = GetComponent<GridInformation>();
     }
 
-    // ---------- public methods
+    // ---------- public methods - working on Farm methods
 
     public void TillSoil(Vector2 worldPos)
     {
@@ -67,7 +67,7 @@ public class FarmController : MonoBehaviour
         //check if there is a valid transformation for the (hoe) tool
         foreach (TileTransform t in watering)
         {
-            if (checkedTile == t.from && IsTileFree(gridPos))
+            if (checkedTile == t.from)
             {
                 tilemap.SetTile(gridPos, t.to);
                 return;
@@ -89,6 +89,22 @@ public class FarmController : MonoBehaviour
         }
     }
 
+    public void DrainSoil(Vector3Int gridPos)
+    {
+        //get Tile data from cell position
+        TileBase checkedTile = tilemap.GetTile(gridPos);
+
+        foreach (TileTransform t in watering)
+        {
+            //basically reverse the 'from' and 'to' in watering
+            if (checkedTile == t.to)
+            {
+                tilemap.SetTile(gridPos, t.from);
+                return;
+            }
+        }
+    }
+
     public void Interact(Vector2 worldPos)
     {
         //get Tile data from world position
@@ -104,6 +120,22 @@ public class FarmController : MonoBehaviour
                 HUD.Instance.AddScore(amount);
             }
         }
+    }
+
+    // ---------- public getter methods
+
+    public bool IsTileWatered(Vector3Int gridPos)
+    {
+        //get Tile data from cell position
+        TileBase checkedTile = tilemap.GetTile(gridPos);
+
+        foreach (TileTransform t in watering)
+        {
+            if (checkedTile == t.to)
+                return true;
+        }
+
+        return false;
     }
 
     // ---------- private methods

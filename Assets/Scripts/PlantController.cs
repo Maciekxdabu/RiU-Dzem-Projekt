@@ -14,12 +14,15 @@ public class PlantController : Placeable
 
     private void Update()
     {
-        if (grown == false)
+        if (grown == false && FarmController.Instance.IsTileWatered(leftDowntile))
         {
             growthProgress += Time.deltaTime;
 
             if (growthProgress >= plantData.growthTime)
+            {
+                FarmController.Instance.DrainSoil(leftDowntile);
                 grown = true;
+            }
 
             UpdateVisuals();
         }
