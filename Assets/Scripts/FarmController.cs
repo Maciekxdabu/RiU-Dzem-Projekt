@@ -82,7 +82,7 @@ public class FarmController : MonoBehaviour
         TileBase checkedTile = tilemap.GetTile(gridPos);
 
         //check if the given plant can be sown on the given tile
-        if (plantData.sowableTiles.Contains(checkedTile) && IsTileFree(gridPos))
+        if (plantData.sowableTiles.Contains(checkedTile) && IsTileFree(gridPos) && HUD.Instance.RemoveScore())
         {
             PlantController plant =  Placeable.SpawnPlaceable(plantData.plantPrefab, gridInfo, gridPos).GetComponent<PlantController>();
             plant.Init(plantData);
@@ -136,6 +136,36 @@ public class FarmController : MonoBehaviour
         }
 
         return false;
+    }
+
+    public bool GetClosestPlant(Vector3 worldPos, out PlantController plant)
+    {
+        //get Tile data from world position
+        Vector3Int gridPos = grid.WorldToCell(worldPos);
+        TileBase checkedTile = tilemap.GetTile(gridPos);
+
+        plant = null;
+
+        float distance = Mathf.Infinity;
+        //iterate through placed things
+        foreach (Vector3Int cellPos in gridInfo.GetAllPositions(OCCUPANT_NAME))
+        {
+            Placeable obj = gridInfo.GetPositionProperty(cellPos, OCCUPANT_NAME, (Object)null) as Placeable;
+            if (obj != null)
+            {
+                //check if thing is a plant
+                if (obj.type == Placeable.Type.plant && Vector3.Distance(worldPos, obj.transform.position) < distance)
+                {
+                    distance = Vector3.Distance(worldPos, obj.transform.position);
+                    plant = obj as PlantController;
+                }
+            }
+        }
+
+        if (plant == null)
+            return false;
+        else
+            return true;
     }
 
     // ---------- private methods

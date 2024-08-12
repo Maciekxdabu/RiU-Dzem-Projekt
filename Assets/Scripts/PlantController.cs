@@ -1,16 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlantController : Placeable
 {
     [SerializeField] private PlantSO plantData;
     [SerializeField] private SpriteRenderer spriteRend;
+    [SerializeField] private float maxHealth = 10f;
+    [SerializeField] private Slider healthSlider = null;
 
     private bool grown = false;
     private float growthProgress;
+    private float health = 1f;
 
     // ---------- Unity messages
+
+    private void Awake()
+    {
+        health = maxHealth;
+    }
 
     private void Update()
     {
@@ -57,6 +66,17 @@ public class PlantController : Placeable
             return (0, null);
     }
 
+    public void EatPlant(float amountEaten)
+    {
+        health -= amountEaten;
+        UpdateHealthBar();
+
+        if (health <= 0f)
+        {
+            OnPlantDeath();
+        }
+    }
+
     // ---------- private methods
 
     private void UpdateVisuals()
@@ -68,5 +88,15 @@ public class PlantController : Placeable
             int index = Mathf.FloorToInt(growthProgress / plantData.growthTime * (plantData.growthStagesSprites.Length - 1));
             spriteRend.sprite = plantData.growthStagesSprites[index];
         }
+    }
+
+    private void UpdateHealthBar()
+    {
+        healthSlider.value = health / maxHealth;
+    }
+
+    private void OnPlantDeath()
+    {
+        Invoke(nameof(Remove), 0f);
     }
 }

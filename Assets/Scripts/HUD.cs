@@ -6,6 +6,8 @@ using TMPro;
 
 public class HUD : MonoBehaviour
 {
+    [SerializeField] private int staringScore = 5;
+    [SerializeField] private int plantingCost = 1;
     [SerializeField] private TMP_Text scoreText;
 
     private int score = 0;
@@ -19,6 +21,9 @@ public class HUD : MonoBehaviour
     private void Awake()
     {
         _instance = this;
+
+        score = staringScore;
+        UpdateHUD();
     }
 
     // ---------- public methods
@@ -26,6 +31,25 @@ public class HUD : MonoBehaviour
     public void AddScore(int addedScore)
     {
         score += addedScore;
+        UpdateHUD();
+    }
+
+    public bool RemoveScore()
+    {
+        if (score - plantingCost < 0)
+            return false;
+        else
+        {
+            score -= plantingCost;
+            UpdateHUD();
+            return true;
+        }
+    }
+
+    // ---------- private methods
+
+    private void UpdateHUD()
+    {
         scoreText.text = score.ToString();
     }
 }
