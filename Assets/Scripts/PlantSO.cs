@@ -25,6 +25,6 @@ public class PlantSO : ScriptableObject
 
     public int Gather()
     {
-        return Random.Range(amountGatheredRange.y, amountGatheredRange.y + 1);
+        return Random.Range(amountGatheredRange.x, amountGatheredRange.y + 1);
     }
 }
