@@ -18,6 +18,7 @@ public class PlantSO : ScriptableObject
 
     [Header("Economy")]
     public float growthTime = 5f;
+    [Tooltip("Range \"from to\" how many player can get per gather")]
     public Vector2Int amountGatheredRange = Vector2Int.one;
 
     // ---------- public methods
