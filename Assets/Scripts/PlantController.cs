@@ -62,7 +62,9 @@ public class PlantController : Placeable
         if (grown)
         {
             Invoke(nameof(Remove), 0f);
-            return (Mathf.RoundToInt(plantData.Gather() * (health / maxHealth)), plantData);
+            int gatheredAmount = Mathf.RoundToInt(plantData.Gather() * (health / maxHealth));
+            PopupController.SpawnPopup(gatheredAmount.ToString(), transform.position);
+            return (gatheredAmount, plantData);
         }
         else
             return (0, null);
