@@ -138,7 +138,7 @@ public class FarmController : MonoBehaviour
         return false;
     }
 
-    public bool GetClosestPlant(Vector3 worldPos, out PlantController plant)
+    public bool GetClosestFreePlant(Vector3 worldPos, out PlantController plant)
     {
         //get Tile data from world position
         Vector3Int gridPos = grid.WorldToCell(worldPos);
@@ -154,7 +154,7 @@ public class FarmController : MonoBehaviour
             if (obj != null)
             {
                 //check if thing is a plant
-                if (obj.type == Placeable.Type.plant && Vector3.Distance(worldPos, obj.transform.position) < distance)
+                if (obj.type == Placeable.Type.plant && Vector3.Distance(worldPos, obj.transform.position) < distance && (obj as PlantController).CanBeEaten())
                 {
                     distance = Vector3.Distance(worldPos, obj.transform.position);
                     plant = obj as PlantController;

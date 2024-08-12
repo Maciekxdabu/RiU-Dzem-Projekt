@@ -28,4 +28,4 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 35c39ba8f111eaa40a9c9a8522057358, type: 3}
   - {fileID: 21300000, guid: cbb3e31a43885ae419fcda3acbd6d583, type: 3}
   growthTime: 5
-  amountGatheredRange: {x: 1, y: 2}
+  amountGatheredRange: {x: 1, y: 3}

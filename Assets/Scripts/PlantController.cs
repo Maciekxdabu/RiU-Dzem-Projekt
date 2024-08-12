@@ -8,11 +8,13 @@ public class PlantController : Placeable
     [SerializeField] private PlantSO plantData;
     [SerializeField] private SpriteRenderer spriteRend;
     [SerializeField] private float maxHealth = 10f;
+    [SerializeField] private int maxEaters = 3;
     [SerializeField] private Slider healthSlider = null;
 
     private bool grown = false;
     private float growthProgress;
     private float health = 1f;
+    private int eaters = 0;
 
     // ---------- Unity messages
 
@@ -60,10 +62,26 @@ public class PlantController : Placeable
         if (grown)
         {
             Invoke(nameof(Remove), 0f);
-            return (plantData.Gather(), plantData);
+            return (Mathf.RoundToInt(plantData.Gather() * (health / maxHealth)), plantData);
         }
         else
             return (0, null);
+    }
+
+    public bool CanBeEaten()
+    {
+        return eaters < maxEaters;
+    }
+
+    public bool ReserveForEating()
+    {
+        if (CanBeEaten())
+        {
+            eaters++;
+            return true;
+        }
+        else
+            return false;
     }
 
     public void EatPlant(float amountEaten)

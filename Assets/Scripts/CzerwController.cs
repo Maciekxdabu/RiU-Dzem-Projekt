@@ -29,14 +29,19 @@ public class CzerwController : MonoBehaviour
             {
                 if (goal == null)
                 {
-                    if (FarmController.Instance.GetClosestPlant(transform.position, out goal) == false)
+                    if (FarmController.Instance.GetClosestFreePlant(transform.position, out goal) == false)//plant not found
                     {
                         UpdateAnimator();
                         return;
                     }
-                    else
+                    else//plant found
                     {
-                        //TODO - assign plant (and listen for gathering/death)
+                        //check if plant is not full of eaters
+                        if (goal.ReserveForEating() == false)
+                        {
+                            goal = null;
+                            return;
+                        }
                     }
                 }
 
