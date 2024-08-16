@@ -93,6 +93,15 @@ public class PlayerController : MonoBehaviour
 
             HUD.Instance.ChangeTool((int)currentTool);
         }
+        else if (ctx.performed)
+        {
+            if (currentTool != (Tool)ctx.ReadValue<float>())
+            {
+                currentTool = (Tool)ctx.ReadValue<float>();
+
+                HUD.Instance.ChangeTool((int)currentTool);
+            }
+        }
     }
 
     // ---------- private methods

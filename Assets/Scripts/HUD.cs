@@ -54,8 +54,10 @@ public class HUD : MonoBehaviour
 
     public void ChangeTool(int toolNumber)
     {
-        if (toolNumber > 0)
-            zaznaczenie.transform.position = tools[toolNumber - 1].transform.position;
+        if (toolNumber <= 0)
+            return;
+
+        zaznaczenie.transform.position = tools[toolNumber - 1].transform.position;
 
         foreach (Image image in toolsIcons)
             image.enabled = false;
