@@ -9,8 +9,12 @@ public class HUD : MonoBehaviour
 {
     [SerializeField] private int staringScore = 5;
     [SerializeField] private int plantingCost = 1;
-    [SerializeField] private TMP_Text scoreText;
     [SerializeField] private string mainMenuScene;
+    [Header("References")]
+    [SerializeField] private TMP_Text scoreText;
+    [SerializeField] private Image zaznaczenie;
+    [SerializeField] private Transform[] tools;
+    [SerializeField] private Image[] toolsIcons;
 
     private int score = 0;
 
@@ -46,6 +50,17 @@ public class HUD : MonoBehaviour
             UpdateHUD();
             return true;
         }
+    }
+
+    public void ChangeTool(int toolNumber)
+    {
+        if (toolNumber > 0)
+            zaznaczenie.transform.position = tools[toolNumber - 1].transform.position;
+
+        foreach (Image image in toolsIcons)
+            image.enabled = false;
+
+        toolsIcons[toolNumber - 1].enabled = true;
     }
 
     // ---------- public methods (for buttons)

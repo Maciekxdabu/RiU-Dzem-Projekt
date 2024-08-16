@@ -38,11 +38,6 @@ public class PlayerController : MonoBehaviour
         rb2d.velocity = moveDirection * moveSpeed;
     }
 
-    private void OnGUI()
-    {
-        GUILayout.Label("Current tool: " + currentTool.ToString());
-    }
-
     // ---------- Input methods
 
     public void OnMove(InputAction.CallbackContext ctx)
@@ -95,6 +90,8 @@ public class PlayerController : MonoBehaviour
         if (ctx.started)
         {
             currentTool = (Tool)ctx.ReadValue<float>();
+
+            HUD.Instance.ChangeTool((int)currentTool);
         }
     }
 
