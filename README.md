@@ -1,5 +1,6 @@
 # RiU-Dzem-Projekt
-A projekt made during a 2024 Reksio Game Dżem
+A projekt made during a 2024 Reksio Game Dżem.
+
 Link to the itch.io page with the built game: https://merloj.itch.io/fermentville
 
 Assets used:
