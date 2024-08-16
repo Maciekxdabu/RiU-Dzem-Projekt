@@ -65,9 +65,14 @@ public class HUD : MonoBehaviour
 
     // ---------- public methods (for buttons)
 
-    public void OnBackToMenu()
+    public void OnBackToMenuBtn()
     {
         SceneManager.LoadScene(mainMenuScene);
+    }
+
+    public void OnRestartBtn()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     // ---------- private methods
